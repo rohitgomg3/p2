@@ -1,0 +1,17 @@
+# PlakshaBudget - Apache SPA Routing
+# Required for React Router / single-page app to work on Apache/XAMPP
+# Without this, refreshing /dashboard returns 404
+
+Options -MultiViews
+RewriteEngine On
+
+# If the requested file or directory doesn't exist, serve index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [QSA,L]
+
+# Allow large file uploads (for indent attachments)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 50M
+    php_value post_max_size 50M
+</IfModule>
